@@ -63,8 +63,6 @@ group by 1
 [View live funnel SQL codes for Power Bi Reporting](SQL/Main-Funnel-Code.sql)
 [View live chort retention SQL codes for Power Bi Reporting](SQL/cohort-retention.sql)
 
-
-
 ---
 
 ## Insights Dashboard View
