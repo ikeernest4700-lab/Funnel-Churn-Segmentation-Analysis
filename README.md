@@ -7,17 +7,25 @@ Customer journey analysis focused on funnel optimization and cohort retention to
 ---
 
 ## Business Problem
-In the 2012–2015 e-commerce dataset for **Mr Fuzzy Teddy Bear Store**, significant drop-offs in the purchase funnel (especially Product Detail → Cart) and extremely high customer churn were causing substantial revenue leakage.
+In the 2012–2015 e-commerce dataset for **Mr Fuzzy Teddy Bear Store**, significant drop-offs in the purchase funnel (especially Product Detail → Cart) and high customer churn were causing major revenue leakage.
 
-The objective was to:
-- Identify where the largest funnel leaks occur
+The goal was to:
+- Identify where users drop off in the funnel
 - Segment performance by product, device, and campaign source
-- Quantify the financial impact of both conversion loss and churn
+- Quantify the financial impact of conversion loss and churn
+
+---
+
+## Tools Used
+- **SQL** → Data extraction, cleaning, joins, segmentation
+- **Excel** → Basic data validation and inspection
+- **Power BI** → KPI creation (DAX measures), funnel visualization, cohort analysis, interactive dashboards
+- **Methods** → Funnel Analysis, Cohort Analysis, Segmentation, ROI Estimation
 
 ---
 
 ## Solution & Approach
-- Built a **Funnel Optimization Dashboard** in Power BI covering the full customer journey:
+- Built a **Funnel Optimization Dashboard** in Power BI covering:
   Landing → Product Detail → Cart → Shipping → Billing → Purchase
 - Performed segmentation analysis by:
   - Product
@@ -27,75 +35,101 @@ The objective was to:
 
 ---
 
+## SQL Data Preparation (Sample)
+
+SQL was used to clean, transform, and structure data before loading into Power BI for analysis.
+
+```sql
+
+funnel as (
+select 
+distinct website_session_id,
+max(case when pageview_url in ( '/home', '/lander-1','/lander-2','/lander-2','/lander-3','/lander-4','/lander-5')
+then rn end) as landing,
+max(case when pageview_url= '/products' then rn end) as product,
+  max( case when  pageview_url IN (
+            '/the-birthday-sugar-panda',
+            '/the-forever-love-bear',
+            '/the-hudson-river-mini-bear',
+            '/the-original-mr-fuzzy') then rn end ) as product_detail,
+max(case when pageview_url='/cart' then rn  end) as cart,
+max(case when pageview_url ='/shipping' then rn end) as shipping,
+max(case when pageview_url in ('/billing', '/billing-2') then rn end) as billing,
+max(case when pageview_url ='/thank-you-for-your-order' then rn end) as purchase
+
+from step 
+group by 1
+```
+---
+
 ## Key Metrics & Findings
 
-### Funnel Performance (Product Detail → Cart)
+### Funnel Performance
 - Product Detail Reach: **210.21K**
 - Cart Reach: **94.95K**
 - Users Lost: **115.3K**
 - Drop-off Rate: **54.83%**
 - Estimated Revenue Loss: **$3.19M**
 
+---
+
 ### Product-Level Drop-off
-- Mr Fuzzy: **56.96%** (worst performer, ~$2.56M loss)
+- Mr Fuzzy: **56.96%**
 - Sugar Panda: **53.74%**
-- Hudson River: **34.87%** (best performer)
-
-### Campaign Source Impact
-- Google Search: **54.93% drop-off**
-- Estimated Revenue Loss: **$2.10M**
-
-### Device Performance
-- Desktop: **53.95% drop-off (~$2.6M loss)**
-- Mobile: **57.88% drop-off (~$0.56M loss)**
+- Hudson River: **34.87%**
 
 ---
 
-## Cohort Retention & Churn Analysis
+### Campaign Source Impact
+- Google Search: **54.93% drop-off**
+
+---
+
+### Device Performance
+- Desktop: **53.95%**
+- Mobile: **57.88%**
+
+---
+
+## Cohort Retention Analysis
 - Overall Churn Rate: **88.87%**
 - Estimated Revenue Loss from Churn: **$2.29M**
 - Repeat Purchase Rate: **1.86%**
 - Median Time to Repeat Purchase: **31 days**
 
-### Segmented Churn Insights
-- Google Search cohorts: **94.56% churn (~$1.64M loss)**
-- Desktop cohorts: **88.6% churn (~$2.0M loss)**
-- Mobile cohorts: **82.6% churn (~$0.34M loss)**
-
 ---
 
 ## Business Impact & Recommendations
-- A **10% improvement in Product → Cart conversion** could generate:
-  - **$581K additional revenue**
-  - **7,154 additional orders**
 
-### Key Insights
-- Mr Fuzzy products and Google Search traffic represent the highest-value leakage points.
-- Desktop users contribute higher absolute revenue loss due to volume, despite slightly lower churn than mobile.
-- Extremely high churn (88.87%) indicates weak retention and post-purchase engagement.
-
-### Recommendations
-- Improve Product Detail pages for high-drop products (especially Mr Fuzzy):
-  - Better visuals, reviews, pricing clarity, and mobile UX
-- Optimize Google Search landing experiences through A/B testing
-- Implement cart abandonment recovery campaigns (email/SMS incentives)
-- Launch retention strategies (loyalty programs, re-engagement campaigns) targeting high-churn cohorts
+A **10% improvement in Product → Cart conversion** could generate:
+- **$581K additional revenue**
+- **7,154 additional orders**
 
 ---
 
-## Tools & Technologies
-- **Excel**: Pivot tables, hypothesis testing, ROI modeling
-- **SQL**: Data extraction, cleaning, segmentation, transformation
-- **Power BI**: Funnel visualization, cohort analysis, DAX measures
-- **Methods**: Funnel Analysis, Cohort Analysis, Segmentation, ROI Estimation, Statistical Testing
+## Key Insights
+- Major funnel leakage occurs at Product Detail → Cart stage
+- Mr Fuzzy products and Google Search traffic are the highest-value drop-off points
+- High churn indicates weak retention and engagement issues
+
+---
+
+## Recommendations
+- Improve Product Detail UX (images, reviews, pricing clarity)
+- Optimize Google Search landing experience through A/B testing
+- Implement cart abandonment recovery strategies (email/SMS incentives)
+- Develop retention strategies for high-churn cohorts
 
 ---
 
 ## Overall Business Impact
-- **Project 1**: Statistically validated landing page optimization → **$1.18M potential recovery**
-- **Project 2**: Funnel + churn optimization → **$5.48M+ combined revenue opportunity**
+- **Project 1**: Landing page optimization → **$1.18M potential recovery**
+- **Project 2**: Funnel + churn optimization → **$5.48M+ combined opportunity**
 
-These projects demonstrate my ability to transform raw data into actionable business insights using SQL, Excel, and Power BI — moving from data preparation to revenue-focused decision-making.
+---
+
+## Conclusion
+This project demonstrates the ability to transform raw data using SQL, build KPI-driven dashboards in Power BI, and generate revenue-focused insights through funnel and cohort analysis.
 
 ---
 
