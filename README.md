@@ -60,11 +60,16 @@ max(case when pageview_url ='/thank-you-for-your-order' then rn end) as purchase
 from step 
 group by 1
 ```
+[View live funnel SQL codes for Power Bi Reporting](SQL/Main-Funnel-Code.sql)
+[View live chort retention SQL codes for Power Bi Reporting](SQL/cohort-retention.sql)
+
+
+
 ---
 
 ## Insights Dashboard View
 
-![Funnel Insights](images/funnel-dashboard.png)
+![Funnel Insights](images/funnel.png)
 
 
 
@@ -105,7 +110,7 @@ group by 1
 
 ## Insights Dashboard View
 
-![Cohort Insights](images/cohort-dashboard.png)
+![Cohort Insights](images/cohort.png)
 
 [live link to full report]()
 ---
