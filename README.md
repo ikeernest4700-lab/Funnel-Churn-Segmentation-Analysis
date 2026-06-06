@@ -2,7 +2,7 @@
 Customer journey analysis focused on funnel optimization and cohort retention to uncover conversion losses, churn behavior, and revenue improvement opportunities.
 ## Project 2: Funnel Optimization & Cohort Retention Analysis
 
-**Live Assets**: [Project 2 Folder (Dashboards, Excel, PDFs, SQL)](https://drive.google.com/drive/folders/1dTU5CpzmJBNrTkHeOSnLvu6AkfCnlwlp?usp=drive_link)
+**Live Assets**: [Project 2 Folder (Dashboards, PDFs, SQL)](https://drive.google.com/drive/folders/1dTU5CpzmJBNrTkHeOSnLvu6AkfCnlwlp?usp=drive_link)
 
 ---
 
