@@ -1,71 +1,113 @@
-# Customer-retention-revenue-analysis
-Customer journey analysis focused on funnel optimization and cohort retention to uncover conversion losses, churn behavior, and revenue improvement opportunities.
-## Funnel Optimization & Cohort Retention Analysis
+# Customer Retention & Revenue Analysis  
+SQL • Power BI • Excel • Cohort Analysis • Funnel Optimization
 
-**Live Assets**: [Project 2 Folder (Dashboards, PDFs, SQL)](https://drive.google.com/drive/folders/1dTU5CpzmJBNrTkHeOSnLvu6AkfCnlwlp?usp=drive_link)
+---
+
+## Overview
+This project analyzes customer behavior across the purchase funnel and retention lifecycle for an e-commerce platform (Mr Fuzzy Teddy Bear Store).  
+
+The goal is to identify:
+- Funnel drop-off points
+- Customer churn behavior
+- Revenue leakage opportunities
+- Retention improvement strategies
+
+---
+
+## Data Source
+This project uses a public dataset from Maven Analytics as part of a data analytics challenge.
+
+Source: https://www.mavenanalytics.io/data-playground
 
 ---
 
 ## Business Problem
-In the 2012–2015 e-commerce dataset for **Mr Fuzzy Teddy Bear Store**, significant drop-offs in the purchase funnel (especially Product Detail to Cart) and high customer churn were causing major revenue leakage.
-
-The goal was to:
-- Identify where users drop off in the funnel
-- Segment performance by product, device, and campaign source
-- Quantify the financial impact of conversion loss and churn
+In the 2012–2015 e-commerce dataset for **Mr Fuzzy Teddy Bear Store**, significant drop-offs in the purchase funnel (especially Product Detail → Cart) and high customer churn were causing major revenue leakage.
 
 ---
 
-## Tools Used
-- **SQL** : Data extraction, cleaning, joins, segmentation
-- **Excel** :Basic data validation and inspection
-- **Power BI** :KPI creation (DAX measures), funnel visualization, cohort analysis, interactive dashboards
-- **Methods** : Funnel Analysis, Cohort Analysis, Segmentation, ROI Estimation
-
----
-## Core Skills Applied
-- SQL (Data cleaning, joins, segmentation, KPI preparation)
-- Power BI (DAX measures, funnel analysis, cohort analysis, dashboards)
-- Data Analytics (Funnel optimization, retention analysis, segmentation)
-- Business Analysis (Revenue impact estimation, conversion optimization)
+## Objectives
+- Identify where users drop off in the funnel  
+- Analyze conversion efficiency across funnel stages  
+- Segment performance by product, device, and traffic source  
+- Measure customer retention and churn behavior  
+- Estimate revenue impact of conversion losses and churn  
 
 ---
 
-## Solution & Approach
-- Built a **Funnel Optimization Dashboard** in Power BI covering:
-  Landing → Product Detail → Cart → Shipping → Billing → Purchase
-- Performed segmentation analysis by:
-  - Product
-  - Device type
-  - Campaign source
-- Extended analysis into **Cohort Retention Analysis** to evaluate churn and repeat purchase behavior
+## Tools & Technologies
+- SQL → Data extraction, cleaning, joins, segmentation  
+- Excel → Data validation and inspection  
+- Power BI → Dashboards, funnel visualization, cohort analysis, KPI reporting  
+- Analytics Methods → Funnel Analysis, Cohort Analysis, Segmentation, ROI Estimation  
+
+---
+
+## Core Skills Demonstrated
+- SQL data transformation and funnel structuring  
+- Power BI dashboard development and DAX measures  
+- Cohort retention analysis and churn modeling  
+- Funnel optimization and conversion analysis  
+- Business impact estimation and revenue analytics  
+
+---
+
+## Solution Approach
+
+### 1. Funnel Analysis
+Built a complete customer journey funnel:
+
+Landing → Product Page → Product Detail → Cart → Shipping → Billing → Purchase  
+
+---
+
+### 2. Segmentation Analysis
+Performance was analyzed across:
+- Product types  
+- Device type  
+- Campaign traffic sources  
+
+---
+
+### 3. Cohort Retention Analysis
+Extended analysis into customer retention behavior to measure:
+- Churn rate  
+- Repeat purchase behavior  
+- Customer lifecycle patterns  
 
 ---
 
 ## SQL Data Preparation (Sample)
 
-SQL was used to clean, transform, and structure data before loading into Power BI for analysis.
-
 ```sql
+funnel AS (
+SELECT 
+    DISTINCT website_session_id,
 
-funnel as (
-select 
-distinct website_session_id,
-max(case when pageview_url in ( '/home', '/lander-1','/lander-2','/lander-2','/lander-3','/lander-4','/lander-5')
-then rn end) as landing,
-max(case when pageview_url= '/products' then rn end) as product,
-  max( case when  pageview_url IN (
-            '/the-birthday-sugar-panda',
-            '/the-forever-love-bear',
-            '/the-hudson-river-mini-bear',
-            '/the-original-mr-fuzzy') then rn end ) as product_detail,
-max(case when pageview_url='/cart' then rn  end) as cart,
-max(case when pageview_url ='/shipping' then rn end) as shipping,
-max(case when pageview_url in ('/billing', '/billing-2') then rn end) as billing,
-max(case when pageview_url ='/thank-you-for-your-order' then rn end) as purchase
+    MAX(CASE WHEN pageview_url IN (
+        '/home','/lander-1','/lander-2','/lander-3','/lander-4','/lander-5'
+    ) THEN rn END) AS landing,
 
-from step 
-group by 1
+    MAX(CASE WHEN pageview_url = '/products' THEN rn END) AS product,
+
+    MAX(CASE WHEN pageview_url IN (
+        '/the-birthday-sugar-panda',
+        '/the-forever-love-bear',
+        '/the-hudson-river-mini-bear',
+        '/the-original-mr-fuzzy'
+    ) THEN rn END) AS product_detail,
+
+    MAX(CASE WHEN pageview_url = '/cart' THEN rn END) AS cart,
+
+    MAX(CASE WHEN pageview_url = '/shipping' THEN rn END) AS shipping,
+
+    MAX(CASE WHEN pageview_url IN ('/billing','/billing-2') THEN rn END) AS billing,
+
+    MAX(CASE WHEN pageview_url = '/thank-you-for-your-order' THEN rn END) AS purchase
+
+FROM step 
+GROUP BY 1
+)
 ```
 [View live funnel SQL codes for Power Bi Reporting](SQL/Main-Funnel-Code.sql)
 
