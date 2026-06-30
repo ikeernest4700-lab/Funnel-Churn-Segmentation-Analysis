@@ -124,6 +124,7 @@ GROUP BY 1
 ![drop off insights and revenue impact](images/funnel-optimizationt.png)
 
 
+## Segementation 
 ![categorised](images/segmentation.png)
 
 
