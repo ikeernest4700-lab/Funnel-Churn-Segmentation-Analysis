@@ -159,7 +159,8 @@ GROUP BY 1
 ## Insights Dashboard View
 
 ![Cohort Insights](images/cohorts.png)
-![churn segmentation insight](images/segement.png)
+
+![churn segmentation insight](images/segment.png)
 
 [live link to full report]()
 ---
