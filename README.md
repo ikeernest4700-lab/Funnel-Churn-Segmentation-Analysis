@@ -120,10 +120,11 @@ GROUP BY 1
 ![Funnel Insights](images/funnel.png)
 
 
-[](images/drop-Off-segment.png)
+## Funnel Optimization
+[drop off insights and revenue impact](images/funnel-optimizationt.png)
 
 
-[](images/funnel-optimization.png)
+[categorised](images/segmentation.png)
 
 
 
